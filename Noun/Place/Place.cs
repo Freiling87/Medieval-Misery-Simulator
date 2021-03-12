@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Entity
+namespace SadConsoleGame.Noun
 {
-	class Place : Person
+	class Place : Noun
 	{
 		// Node-based, to differentiate different farm plots on the same map tile. Policy would indicate whether plots are shared or not.
 

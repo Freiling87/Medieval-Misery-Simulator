@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Entity
+namespace SadConsoleGame.Noun
 {
-	class Agent : Person
+	class Agent : Noun
 	{
 		int charity;
 		int chastity;
@@ -43,7 +43,7 @@ namespace SadConsoleGame.Entity
 			sanguinity = (father.sanguinity + mother.sanguinity) / 2;
 		}
 
-		public static int Forage(Place location, Flora flora, Tool tool)
+		public static int Action(Place location, Noun target, Tool tool)
 		{
 			
 

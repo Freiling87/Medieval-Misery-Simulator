@@ -32,7 +32,4 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
     <PackageReference Include="SadConsole" Version="8.99.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Noun\Place\" />
-  </ItemGroup>
 </Project>

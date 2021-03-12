@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Entity
+namespace SadConsoleGame.Noun
 {
-	class Thing : Person
+	class Thing : Noun
 	{
 	}
 }
