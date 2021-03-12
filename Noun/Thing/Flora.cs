@@ -6,5 +6,14 @@ namespace SadConsoleGame.Entity
 {
 	class Flora : Thing
 	{
+
+		private string GenerateName()
+		{
+			string name = "";
+
+
+
+			return name;
+		}
 	}
 }

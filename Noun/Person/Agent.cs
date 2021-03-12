@@ -19,10 +19,16 @@ namespace SadConsoleGame.Entity
 		int phlegmatism;
 		int sanguinity;
 
-		string sex;
+		string sex = null;
 
 		public Agent(Agent father, Agent mother)
 		{
+			if (Dice.PercentChance(50))
+				sex = "Female";
+			else
+				sex = "Male";
+			// Don't @ me
+
 			charity = (father.charity + mother.charity) / 2;
 			chastity = (father.chastity + mother.chastity) / 2;
 			diligence = (father.diligence + mother.diligence) / 2;
@@ -35,17 +41,6 @@ namespace SadConsoleGame.Entity
 			melancholy = (father.melancholy + mother.melancholy) / 2;
 			phlegmatism = (father.phlegmatism + mother.phlegmatism) / 2;
 			sanguinity = (father.sanguinity + mother.sanguinity) / 2;
-
-			if (Dice.PercentChance(50))
-				sex = "Female";
-			else
-				sex = "Male";
-			// Don't @ me
-
-		}
-		public Agent(bool random)
-		{
-
 		}
 
 		public static int Forage(Place location, Flora flora, Tool tool)

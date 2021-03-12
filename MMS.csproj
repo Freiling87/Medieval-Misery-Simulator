@@ -11,6 +11,9 @@
     <RootNamespace>SadConsoleGame</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="_Main\Game1.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>
@@ -30,7 +33,6 @@
     <PackageReference Include="SadConsole" Version="8.99.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\Menu\" />
     <Folder Include="Noun\Place\" />
   </ItemGroup>
 </Project>
