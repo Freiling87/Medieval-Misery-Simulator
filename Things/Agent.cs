@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SadConsoleGame.Things;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Noun
+namespace SadConsoleGame.Map
 {
-	class Agent : Noun
+	class Agent : PhysObject
 	{
 		int charity;
 		int chastity;
@@ -20,8 +21,10 @@ namespace SadConsoleGame.Noun
 		int sanguinity;
 
 		string sex = null;
+		int dateBorn;
+		int dateDied;
 
-		public Agent(Agent father, Agent mother)
+		public Agent(Place location, Agent father, Agent mother, Agent master, int dateBorn) : base(location)
 		{
 			if (Dice.PercentChance(50))
 				sex = "Female";
@@ -43,11 +46,20 @@ namespace SadConsoleGame.Noun
 			sanguinity = (father.sanguinity + mother.sanguinity) / 2;
 		}
 
-		public static int Action(Place location, Noun target, Tool tool)
+		protected static int DoLabor(Place location, PhysObject target, Tool tool)
 		{
-			
+			int result = 1;
 
-			return 1;
+			//
+
+			return result;
+		}
+
+		protected override void Destroy()
+		{
+			// Code here
+
+			base.Destroy();
 		}
 	}
 }

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Noun
+namespace SadConsoleGame.Map
 {
-	class Place : Noun
+	class Place
 	{
 		// Node-based, to differentiate different farm plots on the same map tile. Policy would indicate whether plots are shared or not.
+		// These are NOT map tiles. 
 
+		MapTile mapTile = null;
 		Place parent = null;
 		Place[] children = null;
 
-		Place(Place MyParent, Place[] myChildren)
+		Place(MapTile location, Place MyParent, Place[] myChildren)
 		{
 			parent = MyParent;
 			children = myChildren;

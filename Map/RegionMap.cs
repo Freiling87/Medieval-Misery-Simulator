@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame.Noun
+namespace MMS.Map
 {
-	class Thing : Noun
+	class RegionMap
 	{
 	}
 }
