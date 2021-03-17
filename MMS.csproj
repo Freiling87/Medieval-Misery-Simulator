@@ -11,9 +11,6 @@
     <RootNamespace>MMS</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="_Main\Game1.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

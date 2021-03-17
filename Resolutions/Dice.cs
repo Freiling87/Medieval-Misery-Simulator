@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SadConsoleGame
+namespace MMS.Resolutions
 {
 	class Dice
 	{
