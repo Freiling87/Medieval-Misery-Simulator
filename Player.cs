@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
+using MMS.Engine;
+using MMS.UI;
+using MMS.UI.Screens;
+
 namespace MMS
 {
 	public class Player
@@ -16,15 +20,9 @@ namespace MMS
 
 		private void DebugUnlockAllButtons()
 		{
-			List<string> debugUnlockAll = new List<string>()
-;
-			unlocks.AddRange(new string[]{
-				"Alchaemica",
-				"Astronomica",
-				"Botanica",
-				"Telethurgica", // Ritecraft
-				"Oenologica" 
-			});
+			List<string> debugUnlockAll = new List<string>();
+
+			//debugUnlockAll = UIManager.Navigator.buttonUnlocks;
 		}
 	}
 }

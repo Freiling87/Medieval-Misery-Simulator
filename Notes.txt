@@ -10,6 +10,17 @@ A C# in-game wiki for RimWorld:
 	1. An input component link manager. This object tracks the mouse. If the mouse is over a link, it restyles the link text. Clicking a link area triggers the link object's action.
 	2. A link object which is added to the manager. The link object has (1) x,y or index for where the link starts (2) link length (3) link code action to trigger when clicked
 
+--- Navigator ----------------------------------------------
+
+Custom BookButton:Button class that will make the buttons look like books
+	Appearances are consistent per button label
+	Filigree lines crossing the spine of the book are drawn across all three levels of the gradient with | character or others
+	Spine & title have gold (or other) filigrees
+		Existing button label of	<         Alchemy        >
+		Is turned into, for example:<8-=-=-=< Alchemy >-=-=-8>
+			OR SOMETHING, obviously prettier ASCII style
+
+
 === PURE HATRED CANNIBALIZATION ================================================
 
 	PH				MMS				Done

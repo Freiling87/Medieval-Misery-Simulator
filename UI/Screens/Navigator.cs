@@ -29,8 +29,6 @@ namespace MMS.UI.Screens
 
 		public void RefreshButtons()
 		{
-
-
 			int buttonIndex = 0;
 
 			Button town = new Button(buttonWidth, buttonHeight)
@@ -40,20 +38,79 @@ namespace MMS.UI.Screens
 			};
 			Add(town);
 
+			Button abbey = new Button(buttonWidth, buttonHeight)
+			{
+				// ~Hire, ~fire, promote, and direct other monks at your abbey. Designate successors to your abbothood.
+				// Expand the building
+
+				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
+				Text = "Abbey",
+			};
+			Add(abbey);
+
+			Button library = new Button(buttonWidth, buttonHeight)
+			{
+				// View the acquired books in your collection
+
+				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
+				Text = "Library",
+			};
+			Add(library);
+
+			Button study = new Button(buttonWidth, buttonHeight)
+			{
+				// Assign research tasks to yourself or others
+
+				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
+				Text = "Study",
+			};
+			Add(study);
+
+			// Special Books
+
+			Button accounts = new Button(buttonWidth, buttonHeight)
+			{
+				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
+				Text = "Accounts",
+			};
+			Add(accounts);
+
 			Button encyclopaedia = new Button(buttonWidth, buttonHeight)
 			{
+				// Articles about flora, fauna, minerals, villagers, merchants, cultures, religions, languages, thinkers
+				// Links to books
+
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Encyclopaedia",
 			};
 			Add(encyclopaedia);
 
+			Button policies = new Button(buttonWidth, buttonHeight)
+			{
+				// Your exegesis of your church's teachings. Or, your druthers.
+				// Also, the laws of the land, which you should not violate.
+
+				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
+				Text = "Policies",
+			};
+			Add(policies);
+
+
 			List<string> buttonUnlocks = new List<string>()
 			{
-				"Alchaemica",
-				"Astronomica",
-				"Botanica",
-				"Telethurgica", // Ritecraft
-				"Oenologica"
+				"Accounts", // Accounts - Your personal accounts.
+				"Alchaemica", // Alchemy - Test disease samples, plants, minerals. Make things out of them.
+				"Astronomica", // Astronomy - Predict the weather and much more.
+				"Botanica", // Botany - Study and breed plants for whichever purposes you choose
+				"Ecologica", // Ecology - Assessing and setting policy for natural resources, to include hunting, foraging, farming, geology
+				"Economica", // Economics - Assessing and setting policy for productive work and its products
+				"Epomenologica", // Statistics - Choose variables and see their correlations
+				"Genealogica", // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
+				"Oenologica",  // Winecraft
+				"Statistica", // Statistics - 
+				"Theologica", // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
+				"Telethurgica", // Ritecraft - Construct Rituals to make Peasants take their medicine
+				"Zythologica", // Beercraft
 			};
 
 			//foreach (string unlock in buttonUnlocks)
