@@ -21,7 +21,7 @@ namespace MMS.Engine
 		public Window WorkDesk;
 		public MessageLog MessageLog;
 		public StatusWindow StatusWindow;
-		public Navigator Navigator;
+		public BookShelf Bookshelf;
 
 		public const int height_1_4 = Program.width * 1 / 4;
 		public const int height_3_4 = Program.height * 3 / 4;
@@ -46,37 +46,37 @@ namespace MMS.Engine
 
 		public void CreateWindows()
 		{
-			int navigatorWidth = Program.width / 8;
-			int mainWindowWidth = Program.width - navigatorWidth;
-			int mainWindowHeight = Program.height;
-			int navigatorHeight = Program.height;
+			int totalHeight = Program.height;
+			int totalWidth = Program.width;
+
+			int bookshelfHeight = totalHeight;
+			int bookshelfWidth = totalWidth / 8;
+
+			int statusHeight = totalHeight / 6;
+			int statusWidth = totalWidth;
+
+			int mainWindowHeight = totalHeight- statusHeight;
+			int mainWindowWidth = totalWidth - bookshelfWidth;
 
 			WorkDesk = new Window(mainWindowWidth, mainWindowHeight)
 			{
 				CanDrag = false,
+				Position = new Point(0, 0),
 				Title = "Placeholder".Align(HorizontalAlignment.Center, mainWindowWidth),
 			};
 			Children.Add(WorkDesk);
 			WorkDesk.Show();
 
-			#region Navigator 
-
-			Navigator = new Navigator(navigatorWidth, navigatorHeight)
+			Bookshelf = new BookShelf(bookshelfWidth, bookshelfHeight)
 			{
-				Position = new Point(Program.width * 7 / 8, 0),
-				UseMouse = true,
+				Position = new Point(totalWidth - bookshelfWidth, totalHeight - bookshelfHeight),
 			};
-			Children.Add(Navigator);
-			Navigator.Show();
+			Children.Add(Bookshelf);
 
-
-			#endregion
-
-			MessageLog = new MessageLog(Program.width, height_1_4, "Log")
+			MessageLog = new MessageLog(statusWidth, statusHeight, "Log")
 			{
-				Position = new Point(0, height_3_4),
+				Position = new Point(totalWidth - statusWidth, totalHeight - statusHeight),
 				CanDrag = false,
-				UseMouse = true,
 			};
 			Children.Add(MessageLog);
 			MessageLog.Show();

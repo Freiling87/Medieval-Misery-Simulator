@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 using MMS.Engine;
+using MMS.UI.Controls;
+using MMS.UI.Themes;
 
 using SadConsole;
 using SadConsole.Controls;
 
 namespace MMS.UI.Screens
 {
-	public class Navigator : Window
+	public class BookShelf : ControlsConsole
 	{
 		static int _height;
 		static int _width;
@@ -18,7 +20,23 @@ namespace MMS.UI.Screens
 		static int buttonGutter = 1;
 		int buttonWidth;
 
-		public Navigator(int width, int height) : base(width, height)
+		public static Dictionary<string, string> buttonTitles = new Dictionary<string, string>()
+		{
+			{ "Alchemy",		"  { A L C H Æ M I C A }  " }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
+			{ "Astronomy",		"  O ○ (Astronomica) ○ O  " }, // Astronomy - Predict the weather and much more.
+			{ "Botany",			"  ☼~§~╢ Botanica ╠═╤╧═( )" }, // Botany - Study and breed plants for whichever purposes you choose
+			{ "Ecology",		"  (▲▼≈= Ecologica ▲▼≈=)  " }, // Ecology - Assessing and setting policy for natural resources, to include hunting, foraging, farming, geology
+			{ "Economy",        " ╠═O══╡ Œconomica ╞══O═╣ " }, // Economics - Assessing and setting policy for productive work and its products 
+			{ "Statistics",     "  ╒═╛ Epomenologica ╒═╛  " }, // Statistics - Choose variables and see their correlations
+			{ "Genealogy",		" ║ ○-  Genealogica  -○ ║ " }, // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
+			{ "Theology",       " ╠╪O╪╣ Theologica  ╠╪O╪╣ " }, // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
+			{ "Rituals",        "  «««  Telethurgica  »»» " }, // Ritecraft - Construct Rituals to make Peasants take their medicine
+			{ "Brewing",        " ╒╧╤╛  Zymologica   ╘╤╧╕ " }, // Brewery - Make beer, wine, or whatever the fuck they drink in your world!
+		};
+
+
+
+		public BookShelf(int width, int height) : base(width, height)
 		{
 			_height = height;
 			_width = width;
@@ -27,21 +45,31 @@ namespace MMS.UI.Screens
 			RefreshButtons();
 		}
 
+		protected override void OnInvalidate()
+		{
+			Fill(Color.AntiqueWhite, Color.SaddleBrown, null); 
+			Print(0, 0, "Booke Shaelfe".Align(HorizontalAlignment.Center, Width), Color.Gold, Color.SaddleBrown);
+		}
+
 		public void RefreshButtons()
 		{
-			int buttonIndex = 0;
+			int buttonIndex = 2 - buttonHeight;
+
+			// NonBooks, to be added to a separate window?
 
 			Button town = new Button(buttonWidth, buttonHeight)
 			{
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Town",
 			};
+			town.Theme = new BookButtonTheme(BookButtonEnum.Town);
 			Add(town);
 
 			Button abbey = new Button(buttonWidth, buttonHeight)
 			{
 				// ~Hire, ~fire, promote, and direct other monks at your abbey. Designate successors to your abbothood.
 				// Expand the building
+				// Manage your accounts
 
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Abbey",
@@ -65,6 +93,8 @@ namespace MMS.UI.Screens
 				Text = "Study",
 			};
 			Add(study);
+
+			buttonIndex++;
 
 			// Special Books
 
@@ -95,23 +125,8 @@ namespace MMS.UI.Screens
 			};
 			Add(policies);
 
+			// Discoverable books
 
-			List<string> buttonUnlocks = new List<string>()
-			{
-				"Accounts", // Accounts - Your personal accounts.
-				"Alchaemica", // Alchemy - Test disease samples, plants, minerals. Make things out of them.
-				"Astronomica", // Astronomy - Predict the weather and much more.
-				"Botanica", // Botany - Study and breed plants for whichever purposes you choose
-				"Ecologica", // Ecology - Assessing and setting policy for natural resources, to include hunting, foraging, farming, geology
-				"Economica", // Economics - Assessing and setting policy for productive work and its products
-				"Epomenologica", // Statistics - Choose variables and see their correlations
-				"Genealogica", // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
-				"Oenologica",  // Winecraft
-				"Statistica", // Statistics - 
-				"Theologica", // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
-				"Telethurgica", // Ritecraft - Construct Rituals to make Peasants take their medicine
-				"Zythologica", // Beercraft
-			};
 
 			//foreach (string unlock in buttonUnlocks)
 			//{

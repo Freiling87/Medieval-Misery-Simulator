@@ -23,6 +23,8 @@ namespace MMS.Engine
 
         static void Main()
         {
+
+            System.Console.Write("test");
             SadConsole.Game.Create(width, height);
 
             //SadConsole.Game.Create("Cheepicus_12x12.font", GameWidth, GameHeight);
