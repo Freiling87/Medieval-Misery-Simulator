@@ -71,9 +71,11 @@ namespace MMS.UI.Themes
 
 			string[] filigree = bookFiligreeTest[BookButtonEnum.Alchemy];
 
-			button.Surface.Print(0, 0, filigree[0].Align(button.TextAlignment, button.Width));
-			button.Surface.Print(0, 1, filigree[1].Align(button.TextAlignment, button.Width));
-			button.Surface.Print(0, 2, filigree[2].Align(button.TextAlignment, button.Width));
+			//button.Surface.Print(0, 0, filigree[0].Align(button.TextAlignment, button.Width));
+			//button.Surface.Print(0, 1, filigree[1].Align(button.TextAlignment, button.Width));
+			//button.Surface.Print(0, 2, filigree[2].Align(button.TextAlignment, button.Width));
+
+			// These will not be resolved until the Bookshelf width bug is resolved
 
 			button.IsDirty = false;
 		}
