@@ -20,22 +20,6 @@ namespace MMS.UI.Screens
 		static int buttonGutter = 1;
 		int buttonWidth;
 
-		public static Dictionary<string, string> buttonTitles = new Dictionary<string, string>()
-		{
-			{ "Alchemy",		"  { A L C H Æ M I C A }  " }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
-			{ "Astronomy",		"  O ○ (Astronomica) ○ O  " }, // Astronomy - Predict the weather and much more.
-			{ "Botany",			"  ☼~§~╢ Botanica ╠═╤╧═( )" }, // Botany - Study and breed plants for whichever purposes you choose
-			{ "Ecology",		"  (▲▼≈= Ecologica ▲▼≈=)  " }, // Ecology - Assessing and setting policy for natural resources, to include hunting, foraging, farming, geology
-			{ "Economy",        " ╠═O══╡ Œconomica ╞══O═╣ " }, // Economics - Assessing and setting policy for productive work and its products 
-			{ "Statistics",     "  ╒═╛ Epomenologica ╒═╛  " }, // Statistics - Choose variables and see their correlations
-			{ "Genealogy",		" ║ ○-  Genealogica  -○ ║ " }, // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
-			{ "Theology",       " ╠╪O╪╣ Theologica  ╠╪O╪╣ " }, // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
-			{ "Rituals",        "  «««  Telethurgica  »»» " }, // Ritecraft - Construct Rituals to make Peasants take their medicine
-			{ "Brewing",        " ╒╧╤╛  Zymologica   ╘╤╧╕ " }, // Brewery - Make beer, wine, or whatever the fuck they drink in your world!
-		};
-
-
-
 		public BookShelf(int width, int height) : base(width, height)
 		{
 			_height = height;
@@ -62,7 +46,6 @@ namespace MMS.UI.Screens
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Town",
 			};
-			town.Theme = new BookButtonTheme(BookButtonEnum.Town);
 			Add(town);
 
 			Button abbey = new Button(buttonWidth, buttonHeight)
@@ -103,6 +86,7 @@ namespace MMS.UI.Screens
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Accounts",
 			};
+			accounts.Theme = BookButtonEnum.Accounts;
 			Add(accounts);
 
 			Button encyclopaedia = new Button(buttonWidth, buttonHeight)

@@ -10,47 +10,55 @@ namespace MMS.UI.Themes
 {
 	public enum BookButtonEnum
 	{
+		Accounts,
 		Alchemy,
-		Town,
+		Astronomy,
+		Botany,
+		Ecology,
+		Economy,
 		Genealogy,
-		Zymology
+		Statistics,
+		Theology,
+		Rituals,
+		Zymology,
+		Template
 	}
 	
 	class BookButtonTheme : ButtonTheme
 	{
 		private static BookButtonEnum title;
 
+		public static Dictionary<string, string> buttonTitles = new Dictionary<string, string>()
+		{
+			{ "Alchemy",        "  { A L C H Æ M I C A }  " }, // 
+			{ "Astronomy",      "  O ○ (Astronomica) ○ O  " }, // Astronomy - Predict the weather and much more.
+			{ "Botany",         "  ☼~§~╢ Botanica ╠═╤╧═( )" }, // Botany - Study and breed plants for whichever purposes you choose
+			{ "Ecology",        "  (▲▼≈= Ecologica ▲▼≈=)  " }, // Ecology - Assessing and setting policy for natural resources, to include hunting, foraging, farming, geology
+			{ "Economy",        " ╠═O══╡ Œconomica ╞══O═╣ " }, // Economics - Assessing and setting policy for productive work and its products 
+			{ "Statistics",     "  ╒═╛ Epomenologica ╒═╛  " }, // Statistics - Choose variables and see their correlations
+			{ "Theology",       " ╠╪O╪╣ Theologica  ╠╪O╪╣ " }, // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
+			{ "Rituals",        "  «««  Telethurgica  »»» " }, // Ritecraft - Construct Rituals to make Peasants take their medicine
+		};
 		public static Dictionary<BookButtonEnum, string[]> bookFiligreeTest = new Dictionary<BookButtonEnum, string[]>()
 		{
-			{ BookButtonEnum.Town, new string[] {		"   a                    a  ",
-														"          EXAMPLE          ",
-														"   a                   a   "} }, // Template - Design book spines here
-			{ BookButtonEnum.Alchemy, new string[] {    "  ╓┬═─═─═○═─═O═─═○═─═─═┬╖  ",
-														"  │║ A L C H Æ M I C A ║│  ",
-														"  ╙┴═─═─═○═─═O═─═○═─═─═┴╜  "} }, // Template - Design book spines here
-			{ BookButtonEnum.Genealogy, new string[] {	"  ║               ═OOO  ║  ",
-														"  ║ ○  Genealogica └┼┘  ║  ",
-														"  ║                O╧O  ║  "} }, // Template - Design book spines here
-			{ BookButtonEnum.Zymology, new string[] {   "   ╒═╤═╤══════─~~~~─═╤═╕   ",
-														"   ╘╤╧╤╛ Zymologica ╒╧╤╧╕  ",
-														"    ╘═╧═─~~~~─══════╧═╧═╛  "} }, // Brewery - Make beer, wine, or whatever the fuck they drink in your world!
+			{ BookButtonEnum.Template, new string[] {   "123456789012345678901234567890123456789001234567",
+														"    5   10   15   20   25   30   35   40   45 47",
+														"    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓  ↓"} }, // Template - Design book spines here
+			{ BookButtonEnum.Alchemy, new string[] {    "             ╓┬═─═─═○═─═O═─═○═─═─═┬╖            ",
+														"             │║ A L C H Æ M I C A ║│            ",
+														"             ╙┴═─═─═○═─═O═─═○═─═─═┴╜            "} }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
+			{ BookButtonEnum.Genealogy, new string[] {	"  |                                          |  ",
+														"  |                Genealogica               |  ",
+														"  |                                          |  "} }, // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
+			{ BookButtonEnum.Zymology, new string[] {   "             ╒═╤═╤══════─~~~~─═╤═╕              ",
+														"             ╘╤╧╤╛ Zymologica ╒╧╤╧╕             ",
+														"              ╘═╧═─~~~~─══════╧═╧═╛             "} }, // Brewery - Make beer, wine, or whatever the fuck they drink in your world!
 		};
 		// Obv these need to be more minimalist. I'm just having fun, okay? >:(
 
 		public BookButtonTheme(BookButtonEnum book)
 		{
 			title = book;
-
-			ShowEnds = false;
-
-			switch (title)
-			{
-				case BookButtonEnum.Town:
-					break;
-				default:
-
-					break;
-			}
 		}
 
 		public override void UpdateAndDraw(ControlBase control, TimeSpan time)
@@ -69,11 +77,11 @@ namespace MMS.UI.Themes
 				appearance.Background,
 				appearance.Glyph, null);
 
-			string[] filigree = bookFiligreeTest[BookButtonEnum.Alchemy];
+			string[] filigree = bookFiligreeTest[BookButtonEnum.Genealogy];
 
-			//button.Surface.Print(0, 0, filigree[0].Align(button.TextAlignment, button.Width));
-			//button.Surface.Print(0, 1, filigree[1].Align(button.TextAlignment, button.Width));
-			//button.Surface.Print(0, 2, filigree[2].Align(button.TextAlignment, button.Width));
+			button.Surface.Print(0, 0, filigree[0].Align(button.TextAlignment, button.Width));
+			button.Surface.Print(0, 1, filigree[1].Align(button.TextAlignment, button.Width));
+			button.Surface.Print(0, 2, filigree[2].Align(button.TextAlignment, button.Width));
 
 			// These will not be resolved until the Bookshelf width bug is resolved
 

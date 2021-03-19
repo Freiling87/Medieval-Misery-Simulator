@@ -50,7 +50,7 @@ namespace MMS.Engine
 			int totalWidth = Program.width;
 
 			int bookshelfHeight = totalHeight;
-			int bookshelfWidth = totalWidth / 8;
+			int bookshelfWidth = totalWidth / 4;
 
 			int statusHeight = totalHeight / 6;
 			int statusWidth = totalWidth;
