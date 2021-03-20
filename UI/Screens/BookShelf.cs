@@ -86,7 +86,7 @@ namespace MMS.UI.Screens
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Accounts",
 			};
-			accounts.Theme = BookButtonEnum.Accounts;
+			accounts.Theme = new BookButtonTheme(BookButtons.Genealogy);
 			Add(accounts);
 
 			Button encyclopaedia = new Button(buttonWidth, buttonHeight)

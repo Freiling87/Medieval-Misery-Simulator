@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	class Place
+	public class Place
 	{
 		// Node-based, to differentiate different farm plots on the same map tile. Policy would indicate whether plots are shared or not.
 		// These are NOT map tiles. 

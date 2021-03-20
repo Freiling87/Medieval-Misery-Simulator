@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.Spatial
 {
-	class MapTile
+	public class MapTile
 	{
 		public int humidity;
 		public int temperature;

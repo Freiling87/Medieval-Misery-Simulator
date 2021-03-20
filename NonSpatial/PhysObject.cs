@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	class PhysObject
+	public class PhysObject
 	{
 		private Place place;
 

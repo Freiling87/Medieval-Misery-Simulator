@@ -4,12 +4,9 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	public class WeatherEvent : NonHumanObject
+	public class Fauna
 	{
-		public WeatherEvent (Place place) : base(place)
-		{
-
-		}
+		public Genome genome;
 
 	}
 }

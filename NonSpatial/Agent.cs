@@ -5,8 +5,22 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	class Agent : PhysObject
+	public class Agent : PhysObject
 	{
+		int dateBorn;
+		int dateDied;
+
+		public Genome genome;
+
+		string sex = null;
+		string gender = null;
+		int kinsey;
+
+		int choler;
+		int melancholy;
+		int phlegmatism;
+		int sanguinity;
+
 		int charity;
 		int chastity;
 		int diligence;
@@ -15,35 +29,22 @@ namespace MMS.NonSpatial
 		int patience;
 		int temperance;
 
-		int choler;
-		int melancholy;
-		int phlegmatism;
-		int sanguinity;
-
-		string sex = null;
-		int dateBorn;
-		int dateDied;
 
 		public Agent(Place location, Agent father, Agent mother, Agent master, int dateBorn) : base(location)
 		{
-			if (Dice.PercentChance(50))
-				sex = "Female";
-			else
-				sex = "Male";
-			// Don't @ me
+			genome = Genome.Combination(father, mother);
 
-			charity = (father.charity + mother.charity) / 2;
-			chastity = (father.chastity + mother.chastity) / 2;
-			diligence = (father.diligence + mother.diligence) / 2;
-			humility = (father.humility + mother.humility) / 2;
-			kindness = (father.kindness + mother.kindness) / 2;
-			patience = (father.patience + mother.patience) / 2;
-			temperance = (father.temperance + mother.temperance) / 2;
+			// Derive everything from above
 
-			choler = (father.choler + mother.choler) / 2;
-			melancholy = (father.melancholy + mother.melancholy) / 2;
-			phlegmatism = (father.phlegmatism + mother.phlegmatism) / 2;
-			sanguinity = (father.sanguinity + mother.sanguinity) / 2;
+		}
+		public Agent(Place location, int dateBorn) : base(location)
+		{
+			genome = new Genome();
+		}
+
+		private void DeriveTraitsFromGenome()
+		{
+
 		}
 
 		protected static int DoLabor(Place location, PhysObject target, Tool tool)

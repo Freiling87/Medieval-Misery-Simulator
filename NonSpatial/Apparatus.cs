@@ -4,12 +4,7 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	public class WeatherEvent : NonHumanObject
+	public class Apparatus
 	{
-		public WeatherEvent (Place place) : base(place)
-		{
-
-		}
-
 	}
 }

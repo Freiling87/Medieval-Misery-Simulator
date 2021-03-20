@@ -4,10 +4,11 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	class Flora : NonHumanObject
+	public class Flora : NonHumanObject
 	{
 		// Fuel, Feed, Fiber, and Reclamation
 
+		public Genome genome;
 
 		public Flora(Place location) : base(location)
 		{

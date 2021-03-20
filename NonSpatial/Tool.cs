@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	class Tool : NonHumanObject
+	public class Tool : NonHumanObject
 	{
-		private float durability;
+		public float durability;
 
 		public Tool (Place place) : base(place)
 		{

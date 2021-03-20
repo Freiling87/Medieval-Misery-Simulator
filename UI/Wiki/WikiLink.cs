@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.UI.Wiki
 {
-	public enum LinkType
+	public enum WikiLinkTypes
 	{
 		Normal,
 		Uncertain,
@@ -30,23 +30,23 @@ namespace MMS.UI.Wiki
 		private string FormattedHyperLinkText(string input)
 		{
 			StringBuilder output = new StringBuilder();
-			LinkType linkType = DetermineLinkType(destination);
+			WikiLinkTypes linkType = DetermineLinkType(destination);
 
 			switch (linkType)
 			{
-				case LinkType.Normal:
+				case WikiLinkTypes.Normal:
 					textColor = "blue";
 					bgColor = null;
 					break;
-				case LinkType.Certain:
+				case WikiLinkTypes.Certain:
 					textColor = "green";
 					bgColor = null;
 					break;
-				case LinkType.Uncertain:
+				case WikiLinkTypes.Uncertain:
 					textColor = "orange";
 					bgColor = null;
 					break;
-				case LinkType.Broken:
+				case WikiLinkTypes.Broken:
 					textColor = "red";
 					bgColor = null;
 					break;
@@ -65,11 +65,11 @@ namespace MMS.UI.Wiki
 			return output.ToString();
 		}
 
-		private LinkType DetermineLinkType(string destination)
+		private WikiLinkTypes DetermineLinkType(string destination)
 		{
 			// Determine what sort of hyperlink should be generated based on player's knowledge of the subject
 
-			return LinkType.Normal;
+			return WikiLinkTypes.Normal;
 		}
 	}
 }
