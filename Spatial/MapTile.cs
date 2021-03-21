@@ -10,7 +10,9 @@ namespace MMS.Spatial
 		public int humidity;
 		public int temperature;
 		public List<WeatherEvent> weatherEvents;
-		public List<Place> places; // Need abstract parent-level Place
+		public List<Place> places; // MapTile is a Root node for the Location hierarchy.
+		// This might be a place where you should create an Interface (ILocationNode) and implement it in MapTile, PhysObject and Place. Allow MapTile to be root Node in the non-spatial location system.
+		// This 
 
 		public MapTile(int mapX, int mapY)
 		{

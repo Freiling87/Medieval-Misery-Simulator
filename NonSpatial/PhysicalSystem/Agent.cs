@@ -1,12 +1,19 @@
-﻿using MMS.Resolutions;
+﻿using MMS.Engine;
+using MMS.NodeSystem;
+using MMS.Resolutions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MMS.NonSpatial
 {
-	public class Agent : PhysObject
+	public class Agent : PhysObject, INode
 	{
+		Agent father;
+		Agent mother;
+		Agent master;
+
+
 		int dateBorn;
 		int dateDied;
 
@@ -29,17 +36,26 @@ namespace MMS.NonSpatial
 		int patience;
 		int temperance;
 
+		//Place home;
+		//Place location;
+		// These are in PhysObject as well - not sure if they need to be mirrored here for access.
 
-		public Agent(Place location, Agent father, Agent mother, Agent master, int dateBorn) : base(location)
+		public Agent(Place _location, Agent _father, Agent _mother, Agent _master, int dateBorn) : base(_location)
 		{
-			genome = Genome.Combination(father, mother);
+			genome = Genome.Combination(_father, _mother);
+			location = _location;
+			father = _father;
+			mother = _mother;
+
+			home = mother.home;
 
 			// Derive everything from above
-
 		}
-		public Agent(Place location, int dateBorn) : base(location)
+		public Agent(Place _location, int dateBorn) : base(_location)
 		{
 			genome = new Genome();
+			location = _location;
+			home = mother.home;
 		}
 
 		private void DeriveTraitsFromGenome()

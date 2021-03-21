@@ -28,7 +28,7 @@ namespace MMS.UI.Themes
 	{
 		private static BookButtons title;
 
-		public static Dictionary<string, string> buttonTitles = new Dictionary<string, string>()
+		public static Dictionary<string, string> deprecatedBookTitles = new Dictionary<string, string>()
 		{
 			{ "Alchemy",        "  { A L C H Æ M I C A }  " }, // 
 			{ "Astronomy",      "  O ○ (Astronomica) ○ O  " }, // Astronomy - Predict the weather and much more.
@@ -58,6 +58,8 @@ namespace MMS.UI.Themes
 
 		public BookButtonTheme(BookButtons book)
 		{
+			// TODO: Eliminate argument above and just pull it from the object rather than the call.
+
 			title = book;
 		}
 
