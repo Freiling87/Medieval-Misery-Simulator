@@ -32,7 +32,7 @@ namespace MMS.UI.Screens
 		protected override void OnInvalidate()
 		{
 			Fill(Color.AntiqueWhite, Color.SaddleBrown, null); 
-			Print(0, 0, "Booke Shaelfe".Align(HorizontalAlignment.Center, Width), Color.Gold, Color.SaddleBrown);
+			Print(0, 0, "Booke Shælfe".ToAscii().Align(HorizontalAlignment.Center, Width), Color.Gold, Color.SaddleBrown);
 		}
 
 		public void RefreshButtons()
@@ -86,7 +86,7 @@ namespace MMS.UI.Screens
 				Position = new Point(buttonGutter, buttonIndex += buttonHeight),
 				Text = "Accounts",
 			};
-			accounts.Theme = new BookButtonTheme(BookButtons.Genealogy);
+			accounts.Theme = new BookButtonTheme(BookButtons.Accounts);
 			Add(accounts);
 
 			Button encyclopaedia = new Button(buttonWidth, buttonHeight)
@@ -116,12 +116,12 @@ namespace MMS.UI.Screens
 			//{
 			//	if (Program.Player.unlocks.Contains(unlock))
 			//	{
-			//		AddButton(buttonIndex += buttonHeight, unlock);
+			//		AddBookButton(buttonIndex += buttonHeight, unlock);
 			//	}
 			//}
 		}
 
-		public void AddButton(int index, string name)
+		public void AddBookButton(int index, string name)
 		{
 			Button button = new Button(buttonWidth, buttonHeight)
 			{

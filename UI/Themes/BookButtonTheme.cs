@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using MMS.Engine;
 using SadConsole;
 using SadConsole.Controls;
 using SadConsole.Themes;
@@ -21,7 +21,8 @@ namespace MMS.UI.Themes
 		Theology,
 		Rituals,
 		Zymology,
-		Template
+		TemplateBlank,
+		TemplateAlign,
 	}
 	
 	class BookButtonTheme : ButtonTheme
@@ -39,17 +40,23 @@ namespace MMS.UI.Themes
 			{ "Theology",       " ╠╪O╪╣ Theologica  ╠╪O╪╣ " }, // Theology - Figure out the bizarre dynamics of the ProcGen Pantheon
 			{ "Rituals",        "  «««  Telethurgica  »»» " }, // Ritecraft - Construct Rituals to make Peasants take their medicine
 		};
-		public static Dictionary<BookButtons, string[]> bookFiligreeTest = new Dictionary<BookButtons, string[]>()
+		public static Dictionary<BookButtons, string[]> bookFiligrees = new Dictionary<BookButtons, string[]>()
 		{
-			{ BookButtons.Template, new string[] {		"123456789012345678901234567890123456789001234567",
+			{ BookButtons.TemplateBlank, new string[] { "                                                ",
+														"                                                ",
+														"                                                "} }, // Template - Blank for copying
+			{ BookButtons.TemplateAlign, new string[] {	"123456789012345678901234567890123456789001234567",
 														"    5   10   15   20   25   30   35   40   45 47",
-														"    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓  ↓"} }, // Template - Design book spines here
+														"    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓  ↓"} }, // Aligner - Use to ensure symmetry when needed
 			{ BookButtons.Alchemy, new string[] {		"             ╓┬═─═─═○═─═O═─═○═─═─═┬╖            ",
 														"             │║ A L C H Æ M I C A ║│            ",
 														"             ╙┴═─═─═○═─═O═─═○═─═─═┴╜            "} }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
-			{ BookButtons.Genealogy, new string[] {		"  |                                          |  ",
-														"  |                Genealogica               |  ",
-														"  |                                          |  "} }, // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
+			{ BookButtons.Astronomy, new string[] {		"                                                ",
+														"                   Astronomica                  ",
+														"                                                "} }, // Astronomy - Predict the weather and much more.
+			{ BookButtons.Genealogy, new string[] {     "  ║                                          ║  ",
+														"  ║                Genealogica               ║  ",
+														"  ║                                          ║  "} }, // Genealogy - Analyze the occurrence of genetic traits in villagers to avoid mishaps.
 			{ BookButtons.Zymology, new string[] {		"             ╒═╤═╤══════─~~~~─═╤═╕              ",
 														"             ╘╤╧╤╛ Zymologica ╒╧╤╧╕             ",
 														"              ╘═╧═─~~~~─══════╧═╧═╛             "} }, // Brewery - Make beer, wine, or whatever the fuck they drink in your world!
@@ -71,21 +78,16 @@ namespace MMS.UI.Themes
 			RefreshTheme(control.ThemeColors, control);
 			Cell appearance = GetStateAppearance(control.State);
 
-			int middle = (button.Height != 1 ? button.Height / 2 : 0);
-
 			// Redraw the control
 			button.Surface.Fill(
 				appearance.Foreground,
 				appearance.Background,
 				appearance.Glyph, null);
 
-			string[] filigree = bookFiligreeTest[BookButtons.Genealogy];
+			string[] filigree = bookFiligrees[BookButtons.Genealogy];
 
-			button.Surface.Print(0, 0, filigree[0].Align(button.TextAlignment, button.Width));
-			button.Surface.Print(0, 1, filigree[1].Align(button.TextAlignment, button.Width));
-			button.Surface.Print(0, 2, filigree[2].Align(button.TextAlignment, button.Width));
-
-			// These will not be resolved until the Bookshelf width bug is resolved
+			for (int i = 0; i < 3; i++)
+				button.Surface.Print(0, i, filigree[i].ToAscii().Align(button.TextAlignment, button.Width));
 
 			button.IsDirty = false;
 		}
