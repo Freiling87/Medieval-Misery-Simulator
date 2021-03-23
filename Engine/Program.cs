@@ -6,6 +6,7 @@ using Game = SadConsole.Game;
 using MMS;
 using MMS.UI;
 using MMS.NonSpatial;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MMS.Engine
 {
@@ -23,20 +24,21 @@ namespace MMS.Engine
 
         static void Main()
         {
+            System.Console.Write("Test Pre-Run message");
 
-            System.Console.Write("test");
-            SadConsole.Game.Create(width, height);
+            Game.Create("Runeset_24x24.font", width, height);
+            FontMaster fontMaster = Global.LoadFont("Fonts\\Runeset_24x24.font");
+            Font normalSizedFont = fontMaster.GetFont(Font.FontSizes.Half);
 
-            //SadConsole.Game.Create("Cheepicus_12x12.font", GameWidth, GameHeight);
+            Global.FontDefault = Global.FontDefault.Master.GetFont(Font.FontSizes.Half);
 
-            // Hook the start event so we can add consoles to the system.
-            SadConsole.Game.OnInitialize = Init;
-            SadConsole.Game.OnUpdate = Update;
-            SadConsole.Game.Instance.Run();
+            Game.OnInitialize = Init;
+            Game.OnUpdate = Update;
+            Game.Instance.Run();
 
             // Code below will not run until the game window closes.
 
-            SadConsole.Game.Instance.Dispose();
+            Game.Instance.Dispose();
         }
 
         static void Init()

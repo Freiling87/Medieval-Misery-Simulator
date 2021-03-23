@@ -29,4 +29,12 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
     <PackageReference Include="SadConsole" Version="8.99.3" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Fonts\Runeset_24x24.font">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Fonts\Runeset_24x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
