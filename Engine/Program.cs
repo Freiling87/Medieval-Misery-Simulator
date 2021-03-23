@@ -12,8 +12,8 @@ namespace MMS.Engine
 {
     public static class Program
     {
-        public const int width = 200;
-        public const int height = 60;
+        public const int width = 240;
+        public const int height = 80;
 
         public static UIManager UIManager;
         public static GSManager GSManager;
@@ -26,11 +26,7 @@ namespace MMS.Engine
         {
             System.Console.Write("Test Pre-Run message");
 
-            Game.Create("Runeset_24x24.font", width, height);
-            FontMaster fontMaster = Global.LoadFont("Fonts\\Runeset_24x24.font");
-            Font normalSizedFont = fontMaster.GetFont(Font.FontSizes.Half);
-
-            Global.FontDefault = Global.FontDefault.Master.GetFont(Font.FontSizes.Half);
+            Game.Create("Fonts\\Andux_8x12.font", width, height);
 
             Game.OnInitialize = Init;
             Game.OnUpdate = Update;
@@ -43,10 +39,11 @@ namespace MMS.Engine
 
         static void Init()
         {
+            Global.FontDefault = Global.FontDefault.Master.GetFont(Font.FontSizes.One);
+
             UIManager = new UIManager();
             GSManager = new GSManager();
             World = new World();
-            //Player Player = new Player();
 
             UIManager.Init();
         }
@@ -54,6 +51,5 @@ namespace MMS.Engine
         private static void Update(GameTime time)
 		{
 		}
-
     }
 }

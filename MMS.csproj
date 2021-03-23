@@ -30,6 +30,15 @@
     <PackageReference Include="SadConsole" Version="8.99.3" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Fonts\Andux_8x12.font">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Fonts\Andux_8x12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Fonts\Freehand_10x16.font">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Fonts\Runeset_24x24.font">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
