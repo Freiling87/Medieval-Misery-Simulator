@@ -44,6 +44,7 @@ namespace MMS.Engine
             UIManager = new UIManager();
             GSManager = new GSManager();
             World = new World();
+            Player = new Player();
 
             UIManager.Init();
         }
