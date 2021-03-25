@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using MMS.NonSpatial.PhysicalSystem;
+
 namespace MMS.NonSpatial
 {
 	public class Genome

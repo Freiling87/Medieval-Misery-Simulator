@@ -51,9 +51,9 @@ namespace MMS.UI.Themes
 															"    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓    ↓  ↓"} }, // Aligner - Use to ensure symmetry when needed
 			{ BookButtonTitles.Alchemy, new string[] {      KnownColor.DarkRed.ToString(),
 															KnownColor.DarkGoldenrod.ToString(),
-															"                                                ",
-															"                A L - C H Æ M I Q A             ",
-															"                                                "} }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
+															" │█                                          █│ ",
+															" │█           A L - C H Æ M I Q Q A          █│ ",
+															" │█                                          █│ "} }, // Alchemy - Test disease samples, plants, minerals. Make things out of them.
 			{ BookButtonTitles.Astronomy, new string[] {    KnownColor.DarkSlateGray.ToString(),
 															KnownColor.LightGoldenrodYellow.ToString(),
 															"                •       •       •               ",
@@ -61,8 +61,8 @@ namespace MMS.UI.Themes
 															"                •       •       •               "} }, // Astronomy - Predict the weather and much more.
 			{ BookButtonTitles.Botany, new string[] {       KnownColor.RosyBrown.ToString(),
 															KnownColor.LightGoldenrodYellow.ToString(),
-															"           ┌─┬─────☼  ( ☼ )  ☼─────┐ ⌠☼         ",
-															"         ☼─┤ │   B o t a n i c a   │ ├─☼        ",
+															"           ┌─┬~~~~~☼  { ☼ }  ☼~~~~~┐ ⌠☼         ",
+															"         ☼~┤ │   B o t a n i c a   │ ├~☼        ",
 															"          ☼⌡ ╘═════════════════════╧═╛          "} }, // Botany - Study and breed plants for whichever purposes you choose
 			{ BookButtonTitles.Ecology, new string[] {      KnownColor.Green.ToString(),
 															KnownColor.White.ToString(),

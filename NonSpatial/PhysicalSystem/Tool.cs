@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.NonSpatial
 {
-	public class Tool : NonHumanObject, INode
+	public class Tool : NonHumanObject
 	{
 		// On the distinction between Owner, User, and Master:
 		//		Master may be an elegant way to serve as Owner. This is because an Agent's Masters want to command not only the Agent, but his tools too.

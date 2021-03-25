@@ -20,7 +20,7 @@ namespace MMS.Engine
         public static Player Player;
         public static World World;
 
-        public static Random rndNum = new Random();
+        public static Random Random = new Random();
 
         static void Main()
         {
@@ -43,7 +43,7 @@ namespace MMS.Engine
 
             UIManager = new UIManager();
             GSManager = new GSManager();
-            World = new World();
+            World = new World(true);
             Player = new Player();
 
             UIManager.Init();

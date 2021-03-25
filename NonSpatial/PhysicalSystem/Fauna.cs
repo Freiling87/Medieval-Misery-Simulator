@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MMS.NonSpatial
+using MMS.NonSpatial.PhysicalSystem;
+
+namespace MMS.NonSpatial.PhysicalSystem
 {
-	public class Fauna
+	public class Fauna : Entity
 	{
 		public Genome genome;
 
+		public Fauna (Place _location) : base(_location)
+		{
+
+		}
 	}
 }
