@@ -10,6 +10,8 @@ namespace MMS.UI.Wiki
 	{
 		public string plaintext;
 
+		public List<WikiLink> links = new List<WikiLink>();
+
 		public WikiText (string inputText)
 		{
 			// IN: "Hey {Person:James Johnson|Jimmy}, how ya doing?"
@@ -18,8 +20,6 @@ namespace MMS.UI.Wiki
 
 
 			// TODO: Create UIDs for Wikiable objects, and pass {UID} for easy linking
-
-			List<WikiLink> links = new List<WikiLink>();
 
 			while (inputText.IndexOf('{') != -1)
 			{
@@ -32,10 +32,9 @@ namespace MMS.UI.Wiki
 				string destination = DelineatedSubstring(linkText, ':', '|', true);
 				string displayText = DelineatedSubstring(linkText, '|', '}', true);
 
-				WikiLink hyperLink = new WikiLink(linkStart, linkLength, type, destination, displayText);
+				links.Add(new WikiLink(linkStart, linkLength, type, destination, displayText));
 
-				links.Add(hyperLink);
-				inputText = inputText.Replace(linkText, hyperLink.linkText);
+				inputText = inputText.Replace(linkText, links[links.Count - 1].displayText);
 			}
 
 			plaintext = inputText;

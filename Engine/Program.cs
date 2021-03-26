@@ -25,8 +25,6 @@ namespace MMS.Engine
 
         static void Main()
         {
-            System.Console.Write("Test Pre-Run message");
-
             Game.Create("Fonts\\Andux_8x12.font", width, height);
 
             Game.OnInitialize = Init;

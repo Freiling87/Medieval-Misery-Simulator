@@ -17,12 +17,14 @@ namespace MMS.Engine
 {
 	public class UIManager : ContainerConsole
 	{
-		// Consoles should be roughly parchment colored, from dark to light as the topmost is displayed
+		// TODO: Consoles should be roughly parchment colored, from dark to light as the topmost is displayed
 
 		public Window WorkDesk;
 		public static MessageLog MessageLog;
 		public StatusWindow StatusWindow;
 		public BookShelf Bookshelf;
+
+		public SadConsole.Themes.Colors ParchmentTheme;
 
 		public const int height_1_4 = Program.width * 1 / 4;
 		public const int height_3_4 = Program.height * 3 / 4;
@@ -40,12 +42,46 @@ namespace MMS.Engine
 
 		public void Init()
 		{
+			SetupCustomColors();
 			CreateWindows();
 
 			UseMouse = true;
 		}
 
-		public void CreateWindows()
+		private void SetupCustomColors()
+		{
+			ParchmentTheme = SadConsole.Themes.Colors.CreateDefault();
+
+			// http://www.foszor.com/blog/xna-color-chart/
+
+			Color parchment = Color.BurlyWood;
+			Color ink = Color.DarkSlateGray;
+
+			ParchmentTheme.ControlHostBack = parchment;
+			ParchmentTheme.ControlBack = (parchment * 0.7f).FillAlpha();
+
+			ParchmentTheme.ControlBackDark = (parchment * 0.7f).FillAlpha();
+			ParchmentTheme.ControlBackLight = (parchment * 1.3f).FillAlpha();
+
+			ParchmentTheme.ControlBackSelected = Color.HotPink;
+
+			ParchmentTheme.Text = ink;
+			ParchmentTheme.TextBright = ink;
+			ParchmentTheme.TextDark = ink;
+			ParchmentTheme.TextFocused = ink;
+			ParchmentTheme.TextLight = ink;
+			ParchmentTheme.TextSelected = ink;
+			ParchmentTheme.TextSelectedDark = ink;
+			ParchmentTheme.TitleText = ink;
+			
+			// Rebuild all objects' themes with the custom colours we picked above.
+			ParchmentTheme.RebuildAppearances();
+
+			// Now set all of these colours as default for SC's default theme.
+			SadConsole.Themes.Library.Default.Colors = ParchmentTheme;
+		}
+
+		private void CreateWindows()
 		{
 			int totalHeight = Program.height;
 			int totalWidth = Program.width;
