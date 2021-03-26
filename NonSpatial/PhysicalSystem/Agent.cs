@@ -49,7 +49,7 @@ namespace MMS.NonSpatial.PhysicalSystem
 
 		public Place GetHome() =>
 			(Place)GetNodeOfRelationship(RelationshipType.home);
-		public void SetHome(Place home)
+		public override void SetHome(Place home)
 		{
 			base.SetHome(home);
 		}
@@ -63,7 +63,7 @@ namespace MMS.NonSpatial.PhysicalSystem
 			return result;
 		}
 
-		protected override void Destroy()
+		public override void Destroy()
 		{
 			// Code here
 

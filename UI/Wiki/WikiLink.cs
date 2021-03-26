@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace MMS.UI.Wiki
 {
 	public enum WikiLinkTypes
@@ -52,15 +51,17 @@ namespace MMS.UI.Wiki
 					break;
 			}
 
-			output.Append("[c:r ");
+			output.Append("[c:r");
 
 			if (!string.IsNullOrEmpty(textColor))
-				output.Append("f:" + textColor + "]");
+				output.Append(" f:" + textColor); // TODO: You might end up with two end brackets this way, split it out
 
 			if (!string.IsNullOrEmpty(bgColor))
-				output.Append("b:" + bgColor + "]");
+				output.Append(" b:" + bgColor); // TODO: You might end up with two end brackets this way, split it out
 
-			output.Append(input + "[c: undo]");
+			output.Append("]");
+
+			output.Append(input + "[c:undo]");
 
 			return output.ToString();
 		}

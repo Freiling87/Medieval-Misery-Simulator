@@ -33,7 +33,6 @@ namespace MMS.NodeSystem
 
 	}
 
-
 	public abstract class Node
 	{
 		//public List<Tuple<INode, string>> relationships = new List<Tuple<INode, string>>();
@@ -65,8 +64,9 @@ namespace MMS.NodeSystem
 		// BASIC CHECKLIST OF MECHANICS IN AN ONTOLOGY:
 		// https://en.wikipedia.org/wiki/Ontology_components
 
-		private Dictionary<Node, List<RelationshipType>> connections;
+		private Dictionary<Node, List<RelationshipType>> connections = new Dictionary<Node, List<RelationshipType>>();
 		public static List<RelationshipType> MonoRelationships = new List<RelationshipType>(); // Identify all relationships which may only have one connection.
+		public static Guid UID = new Guid();
 
 		public void AddRelationship(Node targetNode, RelationshipType isOfMe)
 		{

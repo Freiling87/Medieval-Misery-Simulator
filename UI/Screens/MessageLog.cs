@@ -10,7 +10,7 @@ namespace MMS.UI.Screens
 {
 	public class MessageLog : Window
 	{
-        private static readonly int _maxLines = 100;
+        private static readonly int _maxLines = 1000;
         private readonly Queue<string> _lines;
         private readonly ScrollingConsole _console;
         private readonly ScrollBar _scrollBar;
@@ -73,16 +73,21 @@ namespace MMS.UI.Screens
             }
         }
 
-        public void AddTextNewline(WikiText message)
+        public void LogMessage(string message)
         {
-            //_lines.Enqueue(message);
+            WikiText wikiText = new WikiText(message);
+
+            _lines.Enqueue(message);
 
             if (_lines.Count > _maxLines)
                 _lines.Dequeue();
 
             _console.Cursor.Position = new Point(1, _lines.Count);
-            _console.Cursor.Print(message.plaintext);
+            _console.Cursor.Print(wikiText.plaintext);
+
             // Add WikiLinks here
+
+            _console.Cursor.Print("\n");
         }
 
         public void AddTextNoNewline(string text)

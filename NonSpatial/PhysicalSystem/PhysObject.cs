@@ -14,18 +14,18 @@ namespace MMS.NonSpatial
 			AddRelationship(_location, RelationshipType.location);
 		}
 
-		protected void SetHome(Place newPlace)
+		public virtual void SetHome(Place newPlace)
 		{
 			RemoveAllRelationshipsOfType(RelationshipType.home);
 			AddRelationship(newPlace, RelationshipType.home);
 		}
-		protected void SetLocation(Place newPlace)
+		public virtual void SetLocation(Place newPlace)
 		{
 			RemoveRelationship(GetLocation(), RelationshipType.location);
 			AddRelationship(newPlace, RelationshipType.location);
 		} 
 
-		protected virtual void Destroy()
+		public virtual void Destroy()
 		{
 
 		}

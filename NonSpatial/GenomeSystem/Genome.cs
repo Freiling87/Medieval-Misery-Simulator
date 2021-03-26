@@ -8,14 +8,14 @@ namespace MMS.NonSpatial
 {
 	public class Genome
 	{
-		static List<Gene> genome;
+		static List<Gene> genes;
 
 		public Genome()
 		{
 			// Randomly generated 
 
 			for (int i = 0; i < 32; i++)
-				genome.Add(new Gene());
+				genes.Add(new Gene());
 		}
 
 		private Genome Addition(Genome target)

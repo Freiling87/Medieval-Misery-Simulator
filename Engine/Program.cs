@@ -7,6 +7,7 @@ using MMS;
 using MMS.UI;
 using MMS.NonSpatial;
 using Microsoft.Xna.Framework.Graphics;
+using MMS.UI.Screens;
 
 namespace MMS.Engine
 {
@@ -43,10 +44,12 @@ namespace MMS.Engine
 
             UIManager = new UIManager();
             GSManager = new GSManager();
-            World = new World(true);
             Player = new Player();
 
             UIManager.Init();
+
+            World = new World(true);
+            World.WorldMap.GenerateMap();
         }
 
         private static void Update(GameTime time)
