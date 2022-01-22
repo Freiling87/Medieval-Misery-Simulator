@@ -1,38 +1,31 @@
-﻿using MMS.Spatial;
+﻿using MMS.NodeSystem;
+using MMS.NonSpatial.PhysicalSystem;
+using MMS.Spatial;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MMS.NonSpatial
 {
-	public class PhysObject
+	public class PhysObject : Node
 	{
-		public Agent holder; // Who gets use of the tool for the day.
-		public Agent master; // Master's tools are usable by anyone below them. They may still have their own tools he cannot access..
-
-		public Place home;
-		public Place location;
-
-		public PhysObject(Place location)
+		public PhysObject(Place _location)
 		{
-
+			AddRelationship(_location, RelationshipType.location);
 		}
 
-		protected void MoveHome(Place newPlace)
+		public virtual void SetHome(Place newPlace)
 		{
-			home = newPlace;
+			RemoveAllRelationshipsOfType(RelationshipType.home);
+			AddRelationship(newPlace, RelationshipType.home);
 		}
-
-		protected void MoveLocation(Place newPlace)
+		public virtual void SetLocation(Place newPlace)
 		{
-			location = newPlace;
+			RemoveRelationship(GetLocation(), RelationshipType.location);
+			AddRelationship(newPlace, RelationshipType.location);
 		} 
-		protected void MoveLocation(MapTile newMapTile)
-		{
-			location = newMapTile.places[0];
-		}
 
-		protected virtual void Destroy()
+		public virtual void Destroy()
 		{
 
 		}

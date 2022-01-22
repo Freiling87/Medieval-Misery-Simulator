@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MMS.NonSpatial.FactSystem
 {
-	class Fact : INode
+	class Fact : Node
 	{
 	}
 }

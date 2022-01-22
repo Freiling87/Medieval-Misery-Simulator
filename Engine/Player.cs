@@ -5,6 +5,7 @@ using System.Text;
 using MMS.Engine;
 using MMS.UI;
 using MMS.UI.Screens;
+using MMS.UI.Themes;
 
 namespace MMS.Engine
 {
@@ -16,19 +17,21 @@ namespace MMS.Engine
 		// If you're over 55, say "I'm not healthy enough to travel!"
 		// If you're over 75, end the game and show the image of Merlin in his vacation clothing, with Hawaiian music. This is The Good Ending. Log message, "Fuck it!"
 
-		public static List<string> unlocks;
+		public List<BookButtonTitles> unlocksBookshelf;
 
 		public Player()
 		{
-			unlocks = new List<string>() { };
+			unlocksBookshelf = new List<BookButtonTitles>() { };
 			DebugUnlockAllButtons();
 		}
 
 		private void DebugUnlockAllButtons()
 		{
-			List<string> debugUnlockAll = new List<string>();
+			int titleCount = Enum.GetNames(typeof(BookButtonTitles)).Length;
+			int excludedDebugTitles = 2;
 
-			//debugUnlockAll = UIManager.Navigator.buttonUnlocks;
+			for (int i = 0; i < titleCount - excludedDebugTitles; i ++)
+				unlocksBookshelf.Add((BookButtonTitles)i);
 		}
 	}
 }

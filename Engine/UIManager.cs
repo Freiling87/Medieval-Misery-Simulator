@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using MMS.UI.Screens;
-using MMS.UI.Screens;
+using MMS.UI.Wiki;
 
 using SadConsole;
 using SadConsole.Controls;
@@ -17,12 +17,14 @@ namespace MMS.Engine
 {
 	public class UIManager : ContainerConsole
 	{
-		// Consoles should be roughly parchment colored, from dark to light as the topmost is displayed
+		// TODO: Consoles should be roughly parchment colored, from dark to light as the topmost is displayed
 
 		public Window WorkDesk;
-		public MessageLog MessageLog;
+		public static MessageLog MessageLog;
 		public StatusWindow StatusWindow;
 		public BookShelf Bookshelf;
+
+		public SadConsole.Themes.Colors ParchmentTheme;
 
 		public const int height_1_4 = Program.width * 1 / 4;
 		public const int height_3_4 = Program.height * 3 / 4;
@@ -40,12 +42,46 @@ namespace MMS.Engine
 
 		public void Init()
 		{
+			SetupCustomColors();
 			CreateWindows();
 
 			UseMouse = true;
 		}
 
-		public void CreateWindows()
+		private void SetupCustomColors()
+		{
+			ParchmentTheme = SadConsole.Themes.Colors.CreateDefault();
+
+			// http://www.foszor.com/blog/xna-color-chart/
+
+			Color parchment = Color.BurlyWood;
+			Color ink = Color.DarkSlateGray;
+
+			ParchmentTheme.ControlHostBack = parchment;
+			ParchmentTheme.ControlBack = (parchment * 0.7f).FillAlpha();
+
+			ParchmentTheme.ControlBackDark = (parchment * 0.7f).FillAlpha();
+			ParchmentTheme.ControlBackLight = (parchment * 1.3f).FillAlpha();
+
+			ParchmentTheme.ControlBackSelected = Color.HotPink;
+
+			ParchmentTheme.Text = ink;
+			ParchmentTheme.TextBright = ink;
+			ParchmentTheme.TextDark = ink;
+			ParchmentTheme.TextFocused = ink;
+			ParchmentTheme.TextLight = ink;
+			ParchmentTheme.TextSelected = ink;
+			ParchmentTheme.TextSelectedDark = ink;
+			ParchmentTheme.TitleText = ink;
+			
+			// Rebuild all objects' themes with the custom colours we picked above.
+			ParchmentTheme.RebuildAppearances();
+
+			// Now set all of these colours as default for SC's default theme.
+			SadConsole.Themes.Library.Default.Colors = ParchmentTheme;
+		}
+
+		private void CreateWindows()
 		{
 			int totalHeight = Program.height;
 			int totalWidth = Program.width;
@@ -81,35 +117,22 @@ namespace MMS.Engine
 			};
 			Children.Add(MessageLog);
 			MessageLog.Show();
+
+			LogMessage("Here's a test message with a {Person:James Johnson|Jimmy} hyperlink to fuck around with.");
+		}
+
+		public static void LogMessage(string text)
+		{
+			MessageLog.LogMessage(text);
 		}
 
 		private static void Console_MouseMove(object sender, SadConsole.Input.MouseEventArgs e)
 		{
 			var console = (Console)sender;
-
-			//if (e.MouseState.Mouse.LeftButtonDown)
-			//	console.Print(1, console.Height - 5, $"You've clicked on {e.MouseState.CellPosition}        ");
-			//else
-			//	console.Print(1, console.Height - 5, $"                                                           ");
 		}
 
 		private static void Console_MouseClicked(object sender, SadConsole.Input.MouseEventArgs e)//+
 		{
-			//var console = (SadConsole.Console)sender;
-			//StringBuilder seenString = new StringBuilder("You see:");
-
-			//TileBase seenTile = Program.World.CurrentMap.GetTileAt<TileBase>(e.MouseState.CellPosition);
-			//if (seenTile != null)
-			//	seenString.Append($" {seenTile.Name},");
-
-			//List<Entity> seenEntities = Program.World.CurrentMap.GetEntitiesAt<Entity>(e.MouseState.CellPosition);
-			//if (seenEntities != null)
-			//	foreach (Entity entity in seenEntities)
-			//		seenString.Append($" {entity.Name},");
-
-			//seenString.Remove(seenString.Length - 1, 1);                    //trim comma
-
-			//Program.UIManager.MessageLog.AddTextNewline(seenString.ToString());
 		}
 
 		public bool IsKeyReleased(Keys input) =>
@@ -117,9 +140,5 @@ namespace MMS.Engine
 
 		public bool IsKeyPressed(Keys input) =>
 			Global.KeyboardState.IsKeyPressed(input);
-
-		public void CreateMainWindow(int width, int height, string title)
-		{
-		}
 	}
 }

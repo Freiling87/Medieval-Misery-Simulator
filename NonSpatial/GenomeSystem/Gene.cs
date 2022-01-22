@@ -15,9 +15,9 @@ namespace MMS.NonSpatial
 		public Gene()
 		{
 			Array elements = Enum.GetValues(typeof(Elements));
-			element = (Element)elements.GetValue(Program.rndNum.Next(elements.Length));
+			element = (Element)elements.GetValue(Program.Random.Next(elements.Length));
 
-			valence = Program.rndNum.Next(maxValence + 1); 
+			valence = Program.Random.Next(maxValence + 1); 
 		}
 		public Gene(Element _element, int _valence)
 		{

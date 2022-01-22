@@ -1,19 +1,15 @@
 ﻿using MMS.Engine;
 using MMS.NodeSystem;
+using MMS.NonSpatial.PhysicalSystem;
 using MMS.Resolutions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MMS.NonSpatial
+namespace MMS.NonSpatial.PhysicalSystem
 {
-	public class Agent : PhysObject, INode
+	public class Agent : Entity
 	{
-		Agent father;
-		Agent mother;
-		Agent master;
-
-
 		int dateBorn;
 		int dateDied;
 
@@ -42,25 +38,20 @@ namespace MMS.NonSpatial
 
 		public Agent(Place _location, Agent _father, Agent _mother, Agent _master, int dateBorn) : base(_location)
 		{
-			genome = Genome.Combination(_father, _mother);
-			location = _location;
-			father = _father;
-			mother = _mother;
+			genome = Genome.Combination(_father.genome, _mother.genome);
+			SetHome(_mother.GetHome());
 
-			home = mother.home;
-
-			// Derive everything from above
 		}
 		public Agent(Place _location, int dateBorn) : base(_location)
 		{
-			genome = new Genome();
-			location = _location;
-			home = mother.home;
+			genome = new Genome(); // Random
 		}
 
-		private void DeriveTraitsFromGenome()
+		public Place GetHome() =>
+			(Place)GetNodeOfRelationship(RelationshipType.home);
+		public override void SetHome(Place home)
 		{
-
+			base.SetHome(home);
 		}
 
 		protected static int DoLabor(Place location, PhysObject target, Tool tool)
@@ -72,7 +63,7 @@ namespace MMS.NonSpatial
 			return result;
 		}
 
-		protected override void Destroy()
+		public override void Destroy()
 		{
 			// Code here
 

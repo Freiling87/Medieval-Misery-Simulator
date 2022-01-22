@@ -2,34 +2,41 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+
+using MMS.Engine;
 using MMS.UI.Wiki;
 using SadConsole;
+using SadConsole.Components;
 using SadConsole.Controls;
+using SadConsole.Input;
 
 namespace MMS.UI.Screens
 {
 	public class MessageLog : Window
 	{
-        private static readonly int _maxLines = 100;
-        private readonly Queue<string> _lines;
+        InputConsoleComponent InputConsoleComponent;
+
+        private static readonly int _maxEntries = 10000;
+        private readonly Queue<string> _entries;
         private readonly ScrollingConsole _console;
         private readonly ScrollBar _scrollBar;
         private int _scrollPosition;
         private int _windowBorder = 2;
+		private MouseConsoleState mouseState;
 
-        public MessageLog(int width, int height, string title) : base(width, height)
+		public MessageLog(int width, int height, string title) : base(width, height)
         {
-            _lines = new Queue<string>();
+            _entries = new Queue<string>();
 
             height -= _windowBorder;
             width -= _windowBorder;
 
             Title = title.Align(HorizontalAlignment.Center, Width);
 
-            _console = new ScrollingConsole(width, _maxLines)
+            _console = new ScrollingConsole(width, _maxEntries)
             {
                 Position = new Point(1, 1),
-                ViewPort = new Rectangle(0, 0, width - 1, height)
+                ViewPort = new Rectangle(0, 0, width, height),
             };
 
             _scrollBar = new ScrollBar(Orientation.Vertical, height)
@@ -38,14 +45,13 @@ namespace MMS.UI.Screens
                 IsEnabled = false
             };
             _scrollBar.ValueChanged += MessageScrollBar_ValueChanged;
-            Add(_scrollBar); //Different Add() than the local void (see definition)
+            Add(_scrollBar);
 
             Children.Add(_console);
         }
 
         void MessageScrollBar_ValueChanged(object sender, EventArgs e) =>
-            _console.ViewPort = new Rectangle(
-                0, _scrollBar.Value + _windowBorder, _console.Width, _console.ViewPort.Height);
+            _console.ViewPort = new Rectangle( 0, _scrollBar.Value + _windowBorder, _console.Width, _console.ViewPort.Height);
 
         public override void Draw(TimeSpan drawTime) =>
             base.Draw(drawTime);
@@ -73,21 +79,35 @@ namespace MMS.UI.Screens
             }
         }
 
-        public void AddTextNewline(WikiText message)
+        public void LogMessage(string message)
         {
-            //_lines.Enqueue(message);
+            WikiText wikiText = new WikiText(message);
 
-            if (_lines.Count > _maxLines)
-                _lines.Dequeue();
+            _entries.Enqueue(message);
 
-            _console.Cursor.Position = new Point(1, _lines.Count);
-            _console.Cursor.Print(message.plaintext);
-            // Add WikiLinks here
+            while (_entries.Count > _maxEntries)
+                _entries.Dequeue();
+
+            _console.Cursor.ResetAppearanceToConsole();
+            _console.Cursor.Print(wikiText.plaintext);
+            _console.Cursor.NewLine();
+
+            // Per Thraka:
+            // 1. An input component link manager. This object tracks the mouse. If the mouse is over a link, it restyles the link text. Clicking a link area triggers the link object's action.
+            // 2.A link object which is added to the manager. The link object has(1) x,y or index for where the link starts(2) link length(3) link code action to trigger when clicked
+
+            foreach (WikiLink link in wikiText.links)
+			{
+                Button wikiLink = new Button(link.length, 1)
+                {
+                    Position = link.startIndex.ToPoint(Width),
+                };
+			}
         }
 
         public void AddTextNoNewline(string text)
         {
-            string[] lines = _lines.ToArray();
+            string[] lines = _entries.ToArray();
             lines[lines.Length] += text;
         }
 

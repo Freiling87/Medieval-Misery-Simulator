@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MMS.NodeSystem
 {
-	class RootNode : INode
+	class RootNode : Node
 	{
 		// You're probably wondering:, is there a need for a Singleton class to serve as the root node?
 		//		What exactly would make that preferable to simply expecting a null, you ask? Isn't using and handling null the elegant solution here?

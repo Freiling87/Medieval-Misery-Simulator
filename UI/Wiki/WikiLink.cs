@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace MMS.UI.Wiki
 {
-	public enum WikiLinkTypes
+	public enum WikiLinkType
 	{
 		Normal,
 		Uncertain,
@@ -13,63 +12,71 @@ namespace MMS.UI.Wiki
 		Broken
 	}
 
-	class WikiLink
+	public class WikiLink
 	{
-		static int startIndex;
-		static int length;
-		static string destination;
+		public int startIndex;
+		public int length;
+		static string entryName;
+		static string entryType;
 		static string textColor;
 		static string bgColor;
-		public string linkText;
+		public string displayText;
+		public WikiLinkType linkType;
 
-		public WikiLink(int startIndex, int length, string entryType, string destination, string displayText)
+		public WikiLink(int _startIndex, int _length, string _entryType, string _entryName, string _displayText)
 		{
-			linkText = FormattedHyperLinkText(displayText);
+			startIndex = _startIndex;
+			length = _length;
+			entryType = _entryType;
+			entryName = _entryName;
+			displayText = FormattedHyperLinkText(_displayText);
 		}
 
 		private string FormattedHyperLinkText(string input)
 		{
 			StringBuilder output = new StringBuilder();
-			WikiLinkTypes linkType = DetermineLinkType(destination);
+			WikiLinkType linkType = DetermineLinkType(entryName);
 
 			switch (linkType)
 			{
-				case WikiLinkTypes.Normal:
+				case WikiLinkType.Normal:
 					textColor = "blue";
 					bgColor = null;
 					break;
-				case WikiLinkTypes.Certain:
+				case WikiLinkType.Certain:
 					textColor = "green";
 					bgColor = null;
 					break;
-				case WikiLinkTypes.Uncertain:
+				case WikiLinkType.Uncertain:
 					textColor = "orange";
 					bgColor = null;
 					break;
-				case WikiLinkTypes.Broken:
+				case WikiLinkType.Broken:
 					textColor = "red";
 					bgColor = null;
 					break;
 			}
 
-			output.Append("[c:r ");
+			output.Append("[c:r");
 
 			if (!string.IsNullOrEmpty(textColor))
-				output.Append("f:" + textColor + "]");
+				output.Append(" f:" + textColor); // TODO: You might end up with two end brackets this way, split it out
 
 			if (!string.IsNullOrEmpty(bgColor))
-				output.Append("b:" + bgColor + "]");
+				output.Append(" b:" + bgColor); // TODO: You might end up with two end brackets this way, split it out
 
-			output.Append(input + "[c: undo]");
+			output.Append("]");
+
+			output.Append(input + "[c:undo]");
 
 			return output.ToString();
 		}
 
-		private WikiLinkTypes DetermineLinkType(string destination)
+		private WikiLinkType DetermineLinkType(string destination)
 		{
 			// Determine what sort of hyperlink should be generated based on player's knowledge of the subject
 
-			return WikiLinkTypes.Normal;
+			return WikiLinkType.Normal;
 		}
 	}
 }

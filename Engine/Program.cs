@@ -7,6 +7,7 @@ using MMS;
 using MMS.UI;
 using MMS.NonSpatial;
 using Microsoft.Xna.Framework.Graphics;
+using MMS.UI.Screens;
 
 namespace MMS.Engine
 {
@@ -20,12 +21,10 @@ namespace MMS.Engine
         public static Player Player;
         public static World World;
 
-        public static Random rndNum = new Random();
+        public static Random Random = new Random();
 
         static void Main()
         {
-            System.Console.Write("Test Pre-Run message");
-
             Game.Create("Fonts\\Andux_8x12.font", width, height);
 
             Game.OnInitialize = Init;
@@ -43,9 +42,12 @@ namespace MMS.Engine
 
             UIManager = new UIManager();
             GSManager = new GSManager();
-            World = new World();
+            Player = new Player();
 
             UIManager.Init();
+
+            World = new World(true);
+            World.WorldMap.GenerateMap();
         }
 
         private static void Update(GameTime time)
