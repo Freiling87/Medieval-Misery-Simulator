@@ -1,7 +1,7 @@
 ﻿# Interface
 ## Wiki General
 
-- A C# in-game wiki for RimWorld: https://github.com/Epicguru/InGameWiki
+- An example of a C# in-game wiki for RimWorld: https://github.com/Epicguru/InGameWiki
 
 ## Hyperlinks
 - Per Thraka:
@@ -20,3 +20,6 @@ Custom BookButton:Button class that will make the buttons look like books
 
 # Fact System
 - Per Redxaxder, this is for compressing bitfields. It could be a useful way to track which Facts are known: https://wolfgarbe.medium.com/elias-fano-quasi-succinct-compression-of-sorted-integers-in-c-89f92a8c9986
+
+# Images
+https://htck.github.io/bayeux/#!/#%2F
